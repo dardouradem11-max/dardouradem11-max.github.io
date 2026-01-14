@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fayla9 laformatik</title>
+
+    <style>
+      /* ================= ROOT ================= */
+      :root {
+        --bg-dark: #0a0b1e;
+        --blue: #a3c9f8;
+        --pink: #f8b4d9;
+        --terminal: #111;
+        --white: #eaeaea;
+      }
+
+      /* ================= RESET ================= */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* ================= BODY ================= */
+      body {
+        background: radial-gradient(circle at top, #101330, var(--bg-dark));
+        color: var(--white);
+        font-family: "Courier New", monospace;
+
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      footer {
+        position: fixed;
+        bottom: 15px;
+        right: 45%;
+        z-index: 50;
+      }
+      .creater {
+        position: fixed;
+        bottom: 15px;
+        right: 20px;
+        z-index: 50;
+      }
+      .creater a {
+        color: #eaeaea;
+      }
+
+      /* ================= BACKGROUND EFFECTS ================= */
+      .grid {
+        position: fixed;
+        inset: 0;
+        background-image: linear-gradient(
+            rgba(163, 201, 248, 0.05) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(163, 201, 248, 0.05) 1px, transparent 1px);
+        background-size: 40px 40px;
+        animation: gridMove 20s linear infinite;
+        z-index: 0;
+      }
+
+      @keyframes gridMove {
+        from {
+          background-position: 0 0;
+        }
+        to {
+          background-position: 400px 400px;
+        }
+      }
+
+      .scanline {
+        position: fixed;
+        inset: 0;
+        background: repeating-linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.03),
+          rgba(255, 255, 255, 0.03) 1px,
+          transparent 2px,
+          transparent 4px
+        );
+        pointer-events: none;
+        z-index: 5;
+      }
+
+      /* ================= MAIN ================= */
+      main {
+        position: relative;
+        z-index: 10;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 100px;
+      }
+
+      /* ================= GLITCH TITLE ================= */
+      .glitch {
+        font-family: "Orbitron", "Courier New", monospace;
+        font-size: 5.5rem;
+        font-weight: bold;
+        letter-spacing: 6px;
+        position: relative;
+        color: var(--blue);
+        text-shadow: 0 0 20px var(--blue);
+        animation: float 3s ease-in-out infinite;
+      }
+      /* ===== TITLE LAYOUT ===== */
+      .title {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      /* ===== GLITCH WORD ONLY ===== */
+      .glitch {
+        position: relative;
+        font-family: "Orbitron", sans-serif;
+        font-size: 5rem;
+        font-weight: 800;
+        color: var(--blue);
+      }
+
+      /* restrict glitch inside the word */
+      .glitch::before,
+      .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      /* top glitch */
+      .glitch::before {
+        color: var(--pink);
+        transform: translate(2px, -2px);
+        animation: glitchTop 1.8s infinite linear;
+      }
+
+      /* bottom glitch */
+      .glitch::after {
+        color: #6ef3ff;
+        transform: translate(-2px, 2px);
+        animation: glitchBottom 1.2s infinite linear;
+      }
+
+      /* glitch animations */
+      @keyframes glitchTop {
+        0% {
+          clip-path: inset(0 0 80% 0);
+        }
+        50% {
+          clip-path: inset(40% 0 40% 0);
+        }
+        100% {
+          clip-path: inset(0 0 80% 0);
+        }
+      }
+
+      @keyframes glitchBottom {
+        0% {
+          clip-path: inset(80% 0 0 0);
+        }
+        50% {
+          clip-path: inset(20% 0 60% 0);
+        }
+        100% {
+          clip-path: inset(80% 0 0 0);
+        }
+      }
+
+      /* ===== SUBTITLE ===== */
+      .subtitle {
+        font-family: "Share Tech Mono", monospace;
+        font-size: 1.2rem;
+        opacity: 0.8;
+        white-space: nowrap;
+        font-family: "Orbitron", "Courier New", monospace;
+        font-size: 5.5rem;
+        font-weight: bold;
+        letter-spacing: 6px;
+        position: relative;
+        color: var(--blue);
+        text-shadow: 0 0 20px var(--blue);
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .glitch::before,
+      .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        width: 100%;
+        opacity: 0.8;
+      }
+
+      .glitch::before {
+        color: var(--pink);
+        transform: translate(3px, -3px);
+        animation: glitch1 2s infinite;
+      }
+
+      .glitch::after {
+        color: 081525;
+        transform: translate(-3px, 3px);
+        animation: glitch2 1.5s infinite;
+      }
+
+      @keyframes glitch1 {
+        0%,
+        100% {
+          clip-path: inset(0 0 90% 0);
+        }
+        50% {
+          clip-path: inset(40% 0 40% 0);
+        }
+      }
+
+      @keyframes glitch2 {
+        0%,
+        100% {
+          clip-path: inset(90% 0 0 0);
+        }
+        50% {
+          clip-path: inset(20% 0 60% 0);
+        }
+      }
+
+      @keyframes float {
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      /* ================= TERMINAL ================= */
+      .terminal {
+        margin-top: 30px;
+        width: 90%;
+        max-width: 550px;
+        background: var(--terminal);
+        border: 2px solid var(--blue);
+        border-radius: 10px;
+        box-shadow: 0 0 40px rgba(163, 201, 248, 0.4);
+        overflow: hidden;
+        animation: appear 1s ease forwards;
+      }
+
+      @keyframes appear {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .terminal-header {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        background: #222;
+      }
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 6px;
+      }
+
+      .red {
+        background: #ff5f56;
+      }
+      .yellow {
+        background: #ffbd2e;
+      }
+      .green {
+        background: #27c93f;
+      }
+
+      .terminal-title {
+        margin-left: auto;
+        font-size: 0.8rem;
+        opacity: 0.7;
+      }
+
+      .terminal-body {
+        padding: 20px;
+        font-size: 1.1rem;
+      }
+
+      .purple {
+        color: #c678dd;
+      }
+      .green-t {
+        color: #98c379;
+      }
+      .yellow-t {
+        color: #e5c07b;
+      }
+
+      /* ================= INFO ================= */
+      .info {
+        text-align: center;
+        margin-top: 40px;
+        max-width: 500px;
+        animation: appear 1.5s ease forwards;
+      }
+
+      .info h2 {
+        color: var(--pink);
+        margin-bottom: 10px;
+        text-shadow: 0 0 10px var(--pink);
+      }
+      /* ===== DINO EASTER EGG ===== */
+      .dino-line {
+        margin-top: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Share Tech Mono", monospace;
+        font-size: 0.95rem;
+        opacity: 0;
+        animation: dinoAppear 1s ease forwards;
+        animation-delay: 2.5s;
+      }
+
+      .dino {
+        font-size: 1.3rem;
+        animation: dinoBounce 1.5s infinite;
+      }
+
+      .dino-text {
+        color: #98c379;
+      }
+
+      @keyframes dinoAppear {
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes dinoBounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-4px);
+        }
+      }
+
+      /* ================= BUTTON ================= */
+      .btn {
+        margin-top: 30px;
+        display: inline-block;
+        padding: 15px 40px;
+        border-radius: 50px;
+        background: linear-gradient(45deg, var(--pink), var(--blue));
+        color: #000;
+        font-weight: bold;
+        text-decoration: none;
+        letter-spacing: 2px;
+        box-shadow: 0 0 30px var(--pink);
+        transition: 0.3s;
+      }
+      footer {
+        padding: 1.5rem 2rem;
+        font-size: 0.85rem;
+        opacity: 0.75;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .footer-content a {
+        color: #ffd6e9;
+        text-decoration: none;
+        font-weight: 500;
+        transition: opacity 0.3s ease;
+      }
+
+      .footer-content a:hover {
+        opacity: 0.7;
+      }
+
+      .btn:hover {
+        transform: scale(1.15);
+        box-shadow: 0 0 60px var(--blue);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="grid"></div>
+    <div class="scanline"></div>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+
+    <main>
+      <h1 class="title">
+        <span class="glitch" data-text="FRYLRO">fayla9</span>
+        <span class="subtitle">Laformatik</span>
+      </h1>
+      <div class="terminal">
+        <div class="terminal-header">
+          <div class="dot red"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
+          <div class="terminal-title">TERMINAL — bacInfo</div>
+        </div>
+        <div class="terminal-body" id="terminal">
+          <p>
+            <span class="purple">from</span> bacInfo
+            <span class="purple">import</span> *
+          </p>
+          <p>
+            <span class="yellow-t">print</span>(<span class="green-t"
+              >"admis"</span
+            >)
+          </p>
+          <div class="dino-line">
+            <span class="dino">🦖</span>
+            <span class="dino-text">debugging like it's 1999...</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info">
+        <h2>Laformatik</h2>
+        <p>
+          You scanned the code. You unlocked the system.<br />Welcome to the
+          digital side.
+        </p>
+        <a href="https://www.instagram.com/laformatik_/" class="btn"
+          >FOLLOW ON INSTAGRAM</a
+        >
+        <link
+          href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap"
+          rel="stylesheet"
+        />
+      </div>
+    </main>
+    <footer>
+      <div class="footer-content">
+        <span>© 2026 FAYLA9 LAFORMATIK</span>
+      </div>
+    </footer>
+    <div class="creater">
+      <a
+        href="https://www.instagram.com/adem.darduur?igsh=Nzc3ZG9tNDIxdGpw"
+        target="_blank"
+      >
+        Created by @adem.darduur
+      </a>
+    </div>
+
+    <script>
+      const terminal = document.getElementById("terminal");
+      const lines = [
+        ">>> compiling future...",
+        ">>> loading mindset...",
+        ">>> access granted ✔",
+      ];
+
+      let i = 0;
+
+      function typeLine() {
+        if (i >= lines.length) return;
+        const p = document.createElement("p");
+        terminal.appendChild(p);
+        let j = 0;
+
+        const typing = setInterval(() => {
+          p.textContent += lines[i][j];
+          j++;
+          if (j === lines[i].length) {
+            clearInterval(typing);
+            i++;
+            setTimeout(typeLine, 500);
+          }
+        }, 50);
+      }
+
+      setTimeout(typeLine, 800);
+    </script>
+  </body>
+</html>
