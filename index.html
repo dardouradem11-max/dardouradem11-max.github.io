@@ -420,6 +420,52 @@
         padding: 10px;
     }
 }
+      /* ================= إصلاح الموبايل فقط ================= */
+@media (max-width: 768px) {
+
+    html, body {
+        overflow-x: hidden;
+    }
+
+    body {
+        background-size: cover;
+        background-position: center;
+    }
+
+    /* الكونتينر الرئيسي */
+    .container, .wrapper, main {
+        width: 100%;
+        max-width: 100%;
+        padding: 16px;
+        transform: scale(0.9);
+        transform-origin: top center;
+    }
+
+    /* العنوان الكبير */
+    h1, .title, .logo {
+        font-size: 2.2rem;
+        letter-spacing: 0.15em;
+        text-align: center;
+        white-space: normal;
+    }
+
+    /* نافذة التيرمينال */
+    .terminal {
+        width: 100%;
+        max-width: 100%;
+        font-size: 0.85rem;
+    }
+
+    /* الزر */
+    button, .btn {
+        width: 100%;
+        max-width: 280px;
+        margin: 16px auto;
+    }
+
+    /* الفوتر */
+    footer {
+        font-size
     </style>
   </head>
 
@@ -520,4 +566,5 @@
     </script>
   </body>
 </html>
+
 
